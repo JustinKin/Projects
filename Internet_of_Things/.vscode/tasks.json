@@ -1,0 +1,46 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "GoodLuck-G++",
+            "command": "C:/mingw64/bin/g++.exe",
+            "args":
+            [
+                "-march=native",
+                "-O2",
+                "-fopenmp",
+                "-g",
+
+                "${workspaceFolder}/src/*.cpp",
+                "-o",
+                "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe",
+
+                "-I","D:/FMT/include",
+                "-I","D:/QinJunyou/C/Eigen3/Eigen",
+                "-I","D:/QinJunyou/C/Projects/Internet_of_Things/include",
+
+                "-L","D:/FMT/lib",
+                "-l","fmt",
+
+
+                "-m64"
+
+
+            ],
+            "options":
+            {
+                "cwd": "C:/mingw64/bin"
+            },
+            "problemMatcher":
+            [
+                "$gcc"
+            ],
+            "group":
+            {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
