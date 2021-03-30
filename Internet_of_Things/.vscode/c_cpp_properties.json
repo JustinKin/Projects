@@ -5,8 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "D:/QinJunyou/C/Eigen3/Eigen",
-                "D:/QinJunyou/C/Projects/Internet_of_Things/include",
-                "D:/FMT/include"
+                "D:/FMT/include",
+                "D:/QinJunyou/C/googletest/install/include",
+                "D:/QinJunyou/C/Projects/Internet_of_Things/include"
 
             ],
             "defines": [

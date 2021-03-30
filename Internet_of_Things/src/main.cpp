@@ -21,13 +21,22 @@
           一心向善	好运相伴	佛祖保佑	永无BUG
 */
 #include <iostream>
+#include <limits.h>
+#include <fmt/color.h>
+#include "gtest/gtest.h"
+#include "quick_sort.h"
 #include "Internet_of_Things.H"
 
 using namespace std;
 
+
+
+
+
 int main(int argc, char **argv)
 {
-
+    // for(int i = 0; i <3; ++i)
+    doDebug();
 
 
 

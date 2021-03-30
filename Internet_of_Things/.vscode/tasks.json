@@ -8,21 +8,25 @@
             "args":
             [
                 "-march=native",
-                "-O2",
+                // "-O2",
                 "-fopenmp",
                 "-g",
 
-                "${workspaceFolder}/src/*.cpp",
+                "${workspaceFolder}/src/*",
                 "-o",
                 "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe",
 
                 "-I","D:/FMT/include",
                 "-I","D:/QinJunyou/C/Eigen3/Eigen",
+                "-I","D:/QinJunyou/C/googletest/install/include",
                 "-I","D:/QinJunyou/C/Projects/Internet_of_Things/include",
 
                 "-L","D:/FMT/lib",
                 "-l","fmt",
 
+                "-L","D:/QinJunyou/C/googletest/install/lib",
+                "-l","gtest",
+                "-l","gtest_main",
 
                 "-m64"
 
