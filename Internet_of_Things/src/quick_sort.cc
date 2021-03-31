@@ -7,6 +7,7 @@ void quick_sort_V1(std::vector<int> &nums, int l, int r)
 {
     if (l >= r)
         return;
+    auto k = nums.size();
     int x = l;
     int y = r;
     int z = nums[l];
@@ -83,6 +84,63 @@ void quick_sort_V3(std::vector<int> &nums, int l, int r)
     }
 }
 
+// 随机选择基准值
+// Randomly select the base value
+void quick_sort_V4(std::vector<int> &nums, int l, int r)
+{
+    while(l < r)
+    {
+        std::default_random_engine e;
+        std::uniform_int_distribution<unsigned> u(l, r);
+        int x = l;
+        int y = r;
+        int z = nums[l];
+        while(x <= y)
+        {
+            while(nums[x] < z)
+                ++x;
+            while(nums[y] > z)
+                --y;
+            if(x <= y)
+            {
+                swap(nums[x],nums[y]);
+                ++x;
+                --y;
+            }
+        }
+        quick_sort_V4(nums, l, y);
+        l = x ;
+    }
+
+}
+
+// 三点取中
+// In the three take
+void quick_sort_V5(std::vector<int> &nums, int l, int r)
+{
+    while(l < r)
+    {
+        int x = l;
+        int y = r;
+        int z = median(nums, l, r);
+        while(x <= y)
+        {
+            while(nums[x] < z)
+                ++x;
+            while(nums[y] > z)
+                --y;
+            if(x <= y)
+            {
+                swap(nums[x],nums[y]);
+                ++x;
+                --y;
+            }
+        }
+        quick_sort_V5(nums, l, y);
+        l = x ;
+    }
+
+}
 
 // 普通插入排序
 // ordinary insertion sorting
@@ -136,22 +194,18 @@ void inser_sort_V2(std::vector<int> &nums, int l, int r)
 }
 
 
-std::vector<int> GetRandData(int n)
+void GetRandData()
 {
     static std::default_random_engine e;
-    static std::uniform_int_distribution<unsigned> u(0, n);
-    std::vector<int> nums(n);
-    for (int i = 0; i < n; ++i)
-        nums[i] = u(e);
-    return nums;
+    static std::uniform_int_distribution<unsigned> u(0, MAX_N);
+    for (int i = 0; i < MAX_N; ++i)
+        nums_r[i] = u(e);
 }
 
-std::vector<int> GetData(int n)
+void GetData()
 {
-    std::vector<int> nums(n);
-    for (int i = 0; i < n; ++i)
-        nums[i] = i;
-    return nums;
+    for (int i = 0; i < MAX_N; ++i)
+        nums_o[i] = i;
 }
 
 bool IsOrdered(std::vector<int> &nums, int n)
