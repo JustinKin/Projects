@@ -61,99 +61,126 @@ void quick_sort_V2(std::vector<int> &nums, int l, int r)
 // Unsupervised optimization,Unilateral recursive
 void quick_sort_V3(std::vector<int> &nums, int l, int r)
 {
-    while(l < r)
+    while (l < r)
     {
         int x = l;
         int y = r;
         int z = nums[l];
-        while(x <= y)
+        while (x <= y)
         {
-            while(nums[x] < z)
+            while (nums[x] < z)
                 ++x;
-            while(nums[y] > z)
+            while (nums[y] > z)
                 --y;
-            if(x <= y)
+            if (x <= y)
             {
-                swap(nums[x],nums[y]);
+                swap(nums[x], nums[y]);
                 ++x;
                 --y;
             }
         }
         quick_sort_V3(nums, l, y);
-        l = x ;
+        l = x;
     }
 }
 
 // 随机选择基准值
-// Randomly select the base value
+// Random base value
 void quick_sort_V4(std::vector<int> &nums, int l, int r)
 {
-    while(l < r)
+    while (l < r)
     {
         std::default_random_engine e;
         std::uniform_int_distribution<unsigned> u(l, r);
         int x = l;
         int y = r;
         int z = nums[l];
-        while(x <= y)
+        while (x <= y)
         {
-            while(nums[x] < z)
+            while (nums[x] < z)
                 ++x;
-            while(nums[y] > z)
+            while (nums[y] > z)
                 --y;
-            if(x <= y)
+            if (x <= y)
             {
-                swap(nums[x],nums[y]);
+                swap(nums[x], nums[y]);
                 ++x;
                 --y;
             }
         }
         quick_sort_V4(nums, l, y);
-        l = x ;
+        l = x;
     }
-
 }
 
 // 三点取中
-// In the three take
+// take median in three
 void quick_sort_V5(std::vector<int> &nums, int l, int r)
 {
-    while(l < r)
+    while (l < r)
     {
         int x = l;
         int y = r;
         int z = median(nums, l, r);
-        while(x <= y)
+        while (x <= y)
         {
-            while(nums[x] < z)
+            while (nums[x] < z)
                 ++x;
-            while(nums[y] > z)
+            while (nums[y] > z)
                 --y;
-            if(x <= y)
+            if (x <= y)
             {
-                swap(nums[x],nums[y]);
+                swap(nums[x], nums[y]);
                 ++x;
                 --y;
             }
         }
         quick_sort_V5(nums, l, y);
-        l = x ;
+        l = x;
     }
+}
 
+// 组合排序
+// Combinatorial sorting
+void quick_sort_V6(std::vector<int> &nums, int l, int r)
+{
+    while (r - l > 16)
+    {
+        int x = l;
+        int y = r;
+        int z = median(nums, l, r);
+        while (x <= y)
+        {
+            while (nums[x] < z)
+                ++x;
+            while (nums[y] > z)
+                --y;
+            if (x <= y)
+            {
+                swap(nums[x], nums[y]);
+                ++x;
+                --y;
+            }
+        }
+        quick_sort_V6(nums, l, y);
+        l = x;
+    }
+    if (l < r)
+        inser_sort_V2(nums, l, r);
 }
 
 // 普通插入排序
 // ordinary insertion sorting
 void inser_sort_V1(std::vector<int> &nums, int l, int r)
 {
-    for (int i = l+1; i<=r; ++i)
+    for (int i = l + 1; i <= r; ++i)
     {
-        int j  = i;
+        int j = i;
         // 存在监督项 j > l
         // supervision j > l
-        while( j > l && nums[j] < nums[j-1])
+        while (j > l && nums[j] < nums[j - 1])
         {
-            swap(nums[j], nums[j-1]);
+            swap(nums[j], nums[j - 1]);
             --j;
         }
     }
@@ -166,33 +193,32 @@ void inser_sort_V2(std::vector<int> &nums, int l, int r)
     // 定位全局最小值位置
     // Locate the global minimum position
     int ind = l;
-    for(int i = l+1; i<=r; ++i)
+    for (int i = l + 1; i <= r; ++i)
     {
-        if(nums[i] < nums[ind])
+        if (nums[i] < nums[ind])
             ind = i;
     }
 
     // 最小值移动到最左边
     // move the minimum to the left
-    while(ind > l )
+    while (ind > l)
     {
-        swap(nums[ind], nums[ind-1]);
+        swap(nums[ind], nums[ind - 1]);
         --ind;
     }
 
     // 去掉监督项
     // Remove the supervision
-    for(int i = l+ 2; i<=r; ++i)
+    for (int i = l + 2; i <= r; ++i)
     {
-        int j  = i;
-        while(nums[j] < nums[j-1])
+        int j = i;
+        while (nums[j] < nums[j - 1])
         {
-            swap(nums[j], nums[j-1]);
+            swap(nums[j], nums[j - 1]);
             --j;
         }
     }
 }
-
 
 void GetRandData()
 {

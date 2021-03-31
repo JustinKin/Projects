@@ -29,18 +29,13 @@
 
 using namespace std;
 
-
-
-
-
 int main(int argc, char **argv)
 {
-    // for(int i = 0; i <3; ++i)
-    doDebug();
-
-
-
-
+    for (int i = 0; i < 3; ++i)
+    {
+        fmt::print(fg(fmt::color::deep_sky_blue), "\n\n[ doDebug : roll {} ]\n", i + 1);
+        doDebug();
+    }
 
     system("pause");
     return 0;
